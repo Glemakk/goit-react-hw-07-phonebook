@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../redux/contacts/contactsOperations'
 import { getItems } from '../../redux/contacts/contacts-selectors'
 // import { addItem } from '../../redux/slice/contacts'
-import { toast } from 'react-toastify'
+import { toast, Zoom } from 'react-toastify'
 // import { v4 as uuidv4 } from 'uuid'
 
 import { FcPhoneAndroid, FcBusinessContact } from 'react-icons/fc'
@@ -47,7 +47,10 @@ const ContactForm = () => {
       return
     }
     const newContact = { name, number }
-    dispatch(addItem(newContact))
+    dispatch(addItem(newContact)) &&
+      toast.success(`"${name}" added to contacts `, {
+        transition: Zoom,
+      })
     clearForm()
   }
 
