@@ -1,8 +1,10 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit'
 import * as contactsActions from './contactsActions'
+import { fetchContacts } from './contactsOperations'
+console.log(fetchContacts)
 
 const items = createReducer([], {
-  [contactsActions.fetchContactsSuccess]: (_, action) => action.payload,
+  [fetchContacts.fetchContactsSuccess]: (_, action) => action.payload,
 })
 
 const isLoading = createReducer(false, {

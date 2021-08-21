@@ -1,16 +1,16 @@
 // import PropTypes from 'prop-types'
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RiDeleteBin6Fill } from 'react-icons/ri'
-import { IconContext } from 'react-icons'
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { IconContext } from "react-icons";
 
 // import { getVisibleContacts } from '../../redux/selectors/contacts-selectors'
-import { deleteItem } from '../../redux/actions/item'
-import { getVisibleContacts } from '../../redux/contacts/contacts-selectors'
-import { fetchContacts } from '../../redux/contacts/contactsOperations'
+import { deleteItem } from "../../redux/actions/item";
+import { getVisibleContacts } from "../../redux/contacts/contacts-selectors";
+import { fetchContacts } from "../../redux/contacts/contactsOperations";
 
-import { List, Item } from './ContactList.styled'
-import IconButton from '../IconButton'
+import { List, Item } from "./ContactList.styled";
+import IconButton from "../IconButton";
 
 // const getVisibleContacts = () => {
 //     const normalizedFilter = filter.toLowerCase()
@@ -37,32 +37,32 @@ import IconButton from '../IconButton'
 //   }
 
 export default function ContactList() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // console.log('items >>', items)
-  const contacts = useSelector(getVisibleContacts)
+  const contacts = useSelector(getVisibleContacts);
   const DeleteContact = (id) => {
-    dispatch(deleteItem(id))
-  }
+    dispatch(deleteItem(id));
+  };
 
   useEffect(() => {
-    dispatch(fetchContacts())
-  }, [dispatch])
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  console.log('contacts >>', contacts)
+  console.log("contacts >>", contacts);
   return (
     <List>
       {contacts.map((item) => (
         <Item key={item.id}>
           {item.name}: {item.number}
           <IconButton onClick={() => DeleteContact(item.id)}>
-            <IconContext.Provider value={{ size: '23px' }}>
+            <IconContext.Provider value={{ size: "23px" }}>
               <RiDeleteBin6Fill />
             </IconContext.Provider>
           </IconButton>
         </Item>
       ))}
     </List>
-  )
+  );
 }
 
 // ContactList.propTypes = {
