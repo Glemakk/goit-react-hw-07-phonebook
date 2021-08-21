@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addItem } from '../../redux/actions/item'
+// import { addItem } from '../../redux/actions/item'
+import { addItem } from '../../redux/contacts/contactsOperations'
+
 // import { addItem } from '../../redux/slice/contacts'
 // import { ToastContainer, toast } from 'react-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,7 +21,7 @@ const ContactForm = () => {
   const handleChange = (event) => {
     // console.log(event.target.name)
 
-    const { name, value } = event.target
+    const { name, value } = event.currentTarget
 
     switch (name) {
       case 'name':
@@ -34,24 +36,11 @@ const ContactForm = () => {
     }
   }
 
-  // const handleSubmit = (name, number) => {
-  //   const randomID = uuidv4()
-  //   const newContact = { id: randomID, name, number }
-  //   const findContact = contacts.find((contact) => contact.name.includes(name))
-
-  //   findContact
-  //     ? toast.warn(`${name} is already in contacts`)
-  //     : setContacts((prevState) => [...prevState, newContact])
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     const randomID = uuidv4()
     const newContact = { id: randomID, name, number }
     dispatch(addItem(newContact))
-    // const { name, number } = this.state
-    // const { onSubmit } = this.props
-    // onSubmit(name, number)
     clearForm()
   }
 
