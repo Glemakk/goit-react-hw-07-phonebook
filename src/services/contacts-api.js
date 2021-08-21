@@ -7,7 +7,12 @@ export const getContact = async () => {
   return data
 }
 
-export const postContact = async () => {
-  const { data } = await axios.post('/contacts')
+export const postContact = async (contact) => {
+  const { data } = await axios.post('/contacts', contact)
   return data
+}
+
+export const deleteContact = async (id) => {
+  await axios.delete(`/contacts/${id}`)
+  return id
 }

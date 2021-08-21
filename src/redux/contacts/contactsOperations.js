@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 // import * as contactsActions from './contactsActions.js'
-import { getContact, postContact } from '../../services/contacts-api'
+import {
+  getContact,
+  postContact,
+  deleteContact,
+} from '../../services/contacts-api'
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
@@ -11,8 +15,13 @@ export const fetchContacts = createAsyncThunk(
   },
 )
 
-export const addItem = createAsyncThunk('contacts/add', async () => {
-  const contact = await postContact()
+export const addItem = createAsyncThunk('contacts/add', async (item) => {
+  const contact = await postContact(item)
+  return contact
+})
+
+export const deleteItem = createAsyncThunk('contacts/delete', async (id) => {
+  const contact = await deleteContact(id)
   return contact
 })
 

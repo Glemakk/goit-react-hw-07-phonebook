@@ -1,11 +1,13 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit'
 // import * as contactsActions from './contactsActions'
 import { changeFilter } from './contactsActions'
-import { fetchContacts, addItem } from './contactsOperations'
+import { fetchContacts, addItem, deleteItem } from './contactsOperations'
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, action) => action.payload,
   [addItem.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteItem.fulfilled]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 })
 
 const isLoading = createReducer(false, {
