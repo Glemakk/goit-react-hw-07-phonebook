@@ -25,6 +25,13 @@ const filter = createReducer('', {
   [changeFilter]: (_, action) => action.payload,
 })
 
+export default combineReducers({
+  items,
+  isLoading,
+  error,
+  filter,
+})
+
 // С экшнами без createAsyncThunk
 // const items = createReducer([], {
 //   [fetchContacts.fetchContactsSuccess]: (_, action) => action.payload,
@@ -45,10 +52,3 @@ const filter = createReducer('', {
 //   [contactsActions.changeFilter]: (_, action) => action.payload,
 // })
 //=======
-
-export default combineReducers({
-  items,
-  isLoading,
-  error,
-  filter,
-})

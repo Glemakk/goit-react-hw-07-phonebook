@@ -9,21 +9,39 @@ import {
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
-  async () => {
-    const contacts = await getContact()
-    return contacts
+  async (_, { rejectWithValue }) => {
+    try {
+      const contacts = await getContact()
+      return contacts
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
   },
 )
 
-export const addItem = createAsyncThunk('contacts/add', async (item) => {
-  const contact = await postContact(item)
-  return contact
-})
+export const addItem = createAsyncThunk(
+  'contacts/add',
+  async (item, { rejectWithValue }) => {
+    try {
+      const contact = await postContact(item)
+      return contact
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
 
-export const deleteItem = createAsyncThunk('contacts/delete', async (id) => {
-  const contact = await deleteContact(id)
-  return contact
-})
+export const deleteItem = createAsyncThunk(
+  'contacts/delete',
+  async (id, { rejectWithValue }) => {
+    try {
+      const contact = await deleteContact(id)
+      return contact
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
 
 // Операция без createAsyncThunk
 // export const fetchContacts = () => async (dispatch) => {
